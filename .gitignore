@@ -20,4 +20,4 @@ dist/
 build/
 
 # Database file
-db.sqlite
+.sqlite

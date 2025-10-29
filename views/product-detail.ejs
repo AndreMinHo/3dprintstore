@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+    <h1><%= product.title %></h1>
+    <p>Price: $<%= product.price %></p>
+    <p><%= product.description %></p>
+
+    <h2>Available Filaments:</h2>
+    <ul>
+      <% product.available_filaments.forEach(f => { %>
+        <li>
+          <strong><%= f.color %></strong><br>
+          <img src="/images/<%= f.image %>" alt="<%= f.color %>" width="100">
+        </li>
+      <% }) %>
+    </ul>
+
+    <a href="/products">← Back to all products</a>
+  </body>
+</html>
