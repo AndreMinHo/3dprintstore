@@ -19,7 +19,7 @@ app.use(express.json()); // optional, for JSON requests
 
 // Configure sessions
 app.use(session({
-  secret: "your_secret_key_here",
+  secret: "your_secret_key_here", // Placeholder, for demo purposes only
   resave: false,
   saveUninitialized: false
 }));

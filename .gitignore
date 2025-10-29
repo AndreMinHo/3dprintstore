@@ -20,4 +20,4 @@ dist/
 build/
 
 # Database file
-.sqlite
+*.sqlite
