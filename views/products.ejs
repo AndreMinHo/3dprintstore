@@ -7,14 +7,26 @@
     <%- include('partials/header') %>
 
     <h1><%= title %></h1>
-    <ul>
-      <% products.forEach(p => { %>
-        <li>
-          <a href="/products/<%= p.id %>"><%= p.title %></a> - $<%= p.price %>
-          <br>
-          <img src="/images/<%= p.available_filaments[0].image %>" alt="<%= p.title %>" width="50">
-        </li>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+      <% products.forEach(p => { 
+          const firstFilament = p.available_filaments?.[0];
+          const firstImage = firstFilament?.images?.[0];
+      %>
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+          <a href="/products/<%= p.id %>">
+            <% if (firstImage) { %>
+              <img src="/images/<%= firstImage %>" alt="<%= p.title %>" style="width: 100%; height: auto;">
+            <% } else { %>
+              <div style="width: 100%; height: 150px; background: #eee; display: flex; align-items: center; justify-content: center;">
+                No image
+              </div>
+            <% } %>
+          </a>
+          <h3><a href="/products/<%= p.id %>"><%= p.title %></a></h3>
+          <p>$<%= p.price %></p>
+        </div>
       <% }) %>
-    </ul>
+    </div>
   </body>
 </html>

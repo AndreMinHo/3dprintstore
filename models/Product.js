@@ -4,19 +4,23 @@ const sequelize = require("../sequelize");
 const Product = sequelize.define("Product", {
   title: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   description: {
     type: DataTypes.TEXT,
+    allowNull: false,
   },
   price: {
     type: DataTypes.FLOAT,
-    allowNull: false
+    allowNull: false,
   },
   available_filaments: {
-    type: DataTypes.JSON, // store array of filaments as JSON
-    allowNull: false
-  }
+    type: DataTypes.JSON, // stores your structured array of filament options
+    allowNull: false,
+  },
+}, {
+  timestamps: true,
 });
 
 module.exports = Product;
+

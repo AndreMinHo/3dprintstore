@@ -1,48 +1,49 @@
 const sequelize = require("./sequelize");
 const Product = require("./models/Product");
+
 const products = [
   {
-    title: "Mini Figure",
-    description: "A cute miniature 3D print.",
-    price: 25,
-    available_filaments: [
-      { color: "Red", image: "mini-red.png" },
-      { color: "Blue", image: "mini-blue.png" }
-    ]
-  },
-  {
-    title: "Phone Stand",
-    description: "Perfect stand for your phone or tablet.",
-    price: 15,
-    available_filaments: [
-      { color: "Black", image: "stand-black.png" },
-      { color: "White", image: "stand-white.png" }
-    ]
-  },
-  {
-    title: "Custom Keychain",
-    description: "Personalized keychain with your name!",
+    title: "Ducky",
+    description: "A 1:1 Ducky figure.",
     price: 10,
     available_filaments: [
-      { color: "Green", image: "keychain-green.png" },
-      { color: "Yellow", image: "keychain-yellow.png" }
+      { filament: "PLA Color", images: ["ducky_color_1.png", "ducky_color_2.png"] },
+      { filament: "PLA Matte", images: ["ducky_matte_1.png", "ducky_matte_2.png"] },
+      { filament: "PET", images: ["ducky_pet_1.png", "ducky_pet_2.png"] }
+    ]
+  },
+  {
+    title: "A KAMO keychain.",
+    description: "A stylish keychain.",
+    price: 5,
+    available_filaments: [
+      { filament: "PLA Color", images: ["kamo_color_1.png", "kamo_color_2.png"] },
+      { filament: "PLA Matte", images: ["kamo_matte_1.png", "kamo_matte_2.png"] },
+      { filament: "PET", images: ["kamo_pet_1.png", "kamo_pet_2.png"] }
+    ]
+  },
+  {
+    title: "C Coin",
+    description: "A coin that can be used in board games.",
+    price: 1,
+    available_filaments: [
+      { filament: "PLA Color", images: ["coin_color_1.png", "coin_color_2.png"] },
+      { filament: "PLA Matte", images: ["coin_matte_1.png", "coin_matte_2.png"] },
+      { filament: "PET", images: ["coin_pet_1.png", "coin_pet_2.png"] }
     ]
   }
 ];
 
 async function seed() {
-  try {
-    await sequelize.sync({ force: true });
-    console.log("Database synced");
+  await sequelize.sync({ force: true }); // wipes and recreates tables
+  console.log("Database synced.");
 
-    await Product.bulkCreate(products);
-    console.log("Products seeded!");
+  await Product.bulkCreate(products);
+  console.log("Products seeded successfully.");
 
-    process.exit(0);
-  } catch (error) {
-    console.error("Error seeding:", error);
-    process.exit(1);
-  }
+  process.exit();
 }
 
-seed();
+seed().catch((err) => {
+  console.error("Error seeding:", err);
+});
