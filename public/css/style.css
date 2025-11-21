@@ -1,0 +1,16 @@
+body {
+    background-color: #D3D3D3;
+}
+
+#homeCarousel .carousel-item img {
+  max-height: 350px;
+  width: auto;
+  height: auto;
+  object-fit: contain;   /* <-- no cropping */
+  margin: 0 auto;        /* center horizontally */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1) brightness(0);
+}
