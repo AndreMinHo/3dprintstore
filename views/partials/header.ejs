@@ -1,9 +1,27 @@
-<nav>
-  <a href="/">Home</a> |
-  <a href="/products">Products</a> |
-  <% if (!user) { %>
-    <a href="/login">Login</a> |
-  <% } %>
-  <a href="/account">Account</a>
+<nav id="mainNav" class="navbar navbar-expand bg-light shadow-sm fixed-top px-3">
+  <ul class="navbar-nav me-auto">
+
+    <li class="nav-item me-3">
+      <a class="nav-link d-flex align-items-center" href="/" aria-label="Home">
+        <img src="/images/logo.svg" alt="" width="28" height="28" style="display:block;">
+        <span class="visually-hidden">Home</span>
+      </a>
+    </li>
+
+    <li class="nav-item me-3">
+      <a class="nav-link" href="/products">Products</a>
+    </li>
+
+    <li class="nav-item me-3">
+      <% if (!user) { %>
+        <a class="nav-link" href="/login">Login</a>
+      <% } else { %>
+        <a class="nav-link" href="/account">Account</a>
+      <% } %>
+    </li>
+
+  </ul>
 </nav>
-<hr>
+
+<div style="height: 70px;"></div>
+
