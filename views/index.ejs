@@ -4,56 +4,56 @@
 
   <body class="container py-4">
     <%- include('partials/header') %>
-  <div class="container my-4">
-    <div id="homeCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="container my-4">
+      <div id="homeCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
 
-      <!-- Indicators -->
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
-        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2"></button>
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+          <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- Carousel inner -->
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <img src="/images/ducky_color_1.png" class="d-block w-100" alt="Ducky Color 1">
+          </div>
+
+          <div class="carousel-item">
+            <img src="/images/ducky_pet_1.png" class="d-block w-100" alt="Ducky Pet 1">
+          </div>
+
+          <div class="carousel-item">
+            <img src="/images/ducky_matte_1.png" class="d-block w-100" alt="Kamo Matte 1">
+          </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
       </div>
+    </div>
 
-      <!-- Carousel inner -->
-      <div class="carousel-inner">
-
-        <div class="carousel-item active">
-          <img src="/images/ducky_color_1.png" class="d-block w-100" alt="Ducky Color 1">
-        </div>
-
-        <div class="carousel-item">
-          <img src="/images/ducky_pet_1.png" class="d-block w-100" alt="Ducky Pet 1">
-        </div>
-
-        <div class="carousel-item">
-          <img src="/images/ducky_matte_1.png" class="d-block w-100" alt="Kamo Matte 1">
-        </div>
-
+    <div class="container my-5">
+      <div class="p-2 bg-light rounded-3 shadow-sm text-center">
+        <h1 class="display-5 fw-bold">Custom 3D Print Store</h1>
+        <p class="lead mt-3">
+          Browse unique prints and customize them with your favorite filament options.
+        </p>
       </div>
-
-      <!-- Controls -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-
-      <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-
     </div>
-  </div>
-
-  <div class="container my-5">
-    <div class="p-2 bg-light rounded-3 shadow-sm text-center">
-      <h1 class="display-5 fw-bold">Custom 3D Print Store</h1>
-      <p class="lead mt-3">
-        Browse unique prints and customize them with your favorite filament options.
-      </p>
-    </div>
-  </div>
-
+    <%- include("partials/footer") %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
