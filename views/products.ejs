@@ -2,31 +2,52 @@
 <html>
   <head>
     <title><%= title %></title>
+    <%- include('partials/head') %>
   </head>
   <body>
     <%- include('partials/header') %>
 
-    <h1><%= title %></h1>
+    <div class="container">
+      <h1 class="mb-4 text-center"><%= title %></h1>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-      <% products.forEach(p => { 
-          const firstFilament = p.available_filaments?.[0];
-          const firstImage = firstFilament?.images?.[0];
-      %>
-        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
-          <a href="/products/<%= p.id %>">
-            <% if (firstImage) { %>
-              <img src="/images/<%= firstImage %>" alt="<%= p.title %>" style="width: 100%; height: auto;">
-            <% } else { %>
-              <div style="width: 100%; height: 150px; background: #eee; display: flex; align-items: center; justify-content: center;">
-                No image
+      <div class="row g-4">
+        <% products.forEach(p => { 
+            const firstFilament = p.available_filaments?.[0];
+            const firstImage = firstFilament?.images?.[0];
+        %>
+
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="card h-100 shadow-sm">
+
+              <a href="/products/<%= p.id %>">
+                <% if (firstImage) { %>
+                  <img 
+                    src="/images/<%= firstImage %>" 
+                    class="card-img-top"
+                    alt="<%= p.title %>">
+                <% } else { %>
+                  <div class="d-flex align-items-center justify-content-center bg-light" style="height: 180px;">
+                    No image
+                  </div>
+                <% } %>
+              </a>
+
+              <div class="card-body text-center">
+                <h5 class="card-title">
+                  <a href="/products/<%= p.id %>" class="text-decoration-none text-dark">
+                    <%= p.title %>
+                  </a>
+                </h5>
+                <p class="text-muted mb-0">$<%= p.price %></p>
               </div>
-            <% } %>
-          </a>
-          <h3><a href="/products/<%= p.id %>"><%= p.title %></a></h3>
-          <p>$<%= p.price %></p>
-        </div>
-      <% }) %>
+
+            </div>
+          </div>
+
+        <% }) %>
+      </div>
     </div>
+
+    <%- include('partials/footer') %>
   </body>
 </html>
