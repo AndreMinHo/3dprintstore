@@ -1,56 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-  </head>
+  <%- include('partials/head') %>
+
   <body>
     <%- include('partials/header') %>
+    <div class="container m-1">
+      <div class="row g-4">
+        <!-- Left column: preview images -->
+        <div class="col-md-6" id="previewColumn">
+          <div class="card p-3 shadow-sm">
 
-    <h1><%= product.title %></h1>
-    <p><%= product.description %></p>
-    <p><strong>Price:</strong> $<%= product.price %></p>
+            <div id="imagePreview" class="d-flex gap-1 flex-wrap">
+              <% if (product.available_filaments && product.available_filaments.length > 0) { %>
+                <% product.available_filaments[0].images.forEach(img => { %>
+                  <img
+                    src="/images/<%= img %>"
+                    alt="<%= product.available_filaments[0].filament %>"
+                    style="width: 100%; max-width: 300px; height: auto; border: 1px solid #ccc; padding: 5px; border-radius: 6px;"
+                  >
+                <% }) %>
+              <% } else { %>
+                <div class="text-muted">No preview images</div>
+              <% } %>
+            </div>
+          </div>
+        </div>
 
-    <h3>Select Filament Type</h3>
-    <select id="filamentSelect">
-      <% product.available_filaments.forEach((filament, index) => { %>
-        <option value="<%= index %>"><%= filament.filament %></option>
-      <% }) %>
-    </select>
+        <!-- Right column: product info -->
+        <div class="col-12 col-md-6" id="infoColumn">
+          <h1 class="h3"><%= product.title %></h1>
 
-    <div id="imagePreview" style="margin-top: 20px; display: flex; gap: 10px;">
-      <% if (product.available_filaments.length > 0) { %>
-        <% product.available_filaments[0].images.forEach(img => { %>
-          <img
-            src="/images/<%= img %>"
-            alt="<%= product.available_filaments[0].filament %>"
-            style="width: 150px; height: auto; border: 1px solid #ccc; padding: 5px;"
-          >
-        <% }) %>
-      <% } %>
-    </div>
+          <p class="text-muted"><%= product.description %></p>
 
-    <a href="/products">← Back to Products</a>
+          <p class="fs-4"><strong>Price:</strong> $<%= product.price %></p>
 
-    <script>
-      const filaments = <%- JSON.stringify(product.available_filaments) %>;
-      const select = document.getElementById("filamentSelect");
-      const imagePreview = document.getElementById("imagePreview");
-
-      select.addEventListener("change", () => {
-        const chosen = filaments[select.value];
-        imagePreview.innerHTML = ""; // clear old images
-
-        chosen.images.forEach(img => {
-          const imageEl = document.createElement("img");
-          imageEl.src = "/images/" + img;
-          imageEl.alt = chosen.filament;
-          imageEl.style.width = "150px";
-          imageEl.style.height = "auto";
-          imageEl.style.border = "1px solid #ccc";
-          imageEl.style.padding = "5px";
-          imagePreview.appendChild(imageEl);
-        });
-      });
-    </script>
+          <div class="my-4">
+            <label for="filamentSelect" class="form-label fw-semibold">Select Filament Type</label>
+            <select id="filamentSelect" class="form-select w-auto">
+              <% product.available_filaments.forEach((filament, index) => { %>
+                <option value="<%= index %>"><%= filament.filament %></option>
+              <% }) %>
+            </select>
+          </div>
+          <!-- Placeholder purchase button -->
+          <button class="btn btn-primary w-100 mb-3">Purchase</button>
+          <a href="/products" class="btn btn-outline-secondary mt-3">← Back to Products</a>
+        </div>
+      </div>
+    </div>    
   </body>
+  <script>
+    // Pass server-side filaments into client-side JS
+    const filaments = <%- JSON.stringify(product.available_filaments || []) %>;
+    const select = document.getElementById("filamentSelect");
+    const imagePreview = document.getElementById("imagePreview");
+
+    // Render images for a given filament index
+    function renderFilamentImages(index) {
+      imagePreview.innerHTML = "";
+      const chosen = filaments[index];
+
+      if (!chosen || !chosen.images || chosen.images.length === 0) {
+        imagePreview.innerHTML = '<div class="text-muted">No preview images available</div>';
+        return;
+      }
+
+      chosen.images.forEach(img => {
+        const el = document.createElement("img");
+        el.src = "/images/" + img;
+        el.alt = chosen.filament;
+
+        // Bootstrap-friendly + larger preview images
+        el.className = "img-fluid border rounded shadow-sm";
+        el.style.maxWidth = "520px";     // bigger images
+        el.style.width = "100%";         // responsive scaling
+        el.style.marginBottom = "0.75rem";
+
+        imagePreview.appendChild(el);
+      });
+    }
+
+    // Initial render (default to first filament)
+    if (filaments.length > 0) {
+      renderFilamentImages(0);
+    }
+
+    // Update when filament selection changes
+    select.addEventListener("change", () => {
+      renderFilamentImages(select.value);
+    });
+  </script>
+
 </html>

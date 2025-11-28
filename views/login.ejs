@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-  </head>
+  <%- include('partials/head') %>
   <body>
     <%- include('partials/header') %>
 
-    <h1><%= title %></h1>
+    <div class="container mt-5 pt-4">
 
-    <% if (typeof error !== "undefined") { %>
-      <p style="color: red;"><%= error %></p>
-    <% } %>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-5">
 
-    <form action="/login" method="POST">
-      <label>Username:</label><br>
-      <input type="text" name="username" required><br><br>
+          <div class="card shadow-sm">
+            <div class="card-body">
 
-      <label>Password:</label><br>
-      <input type="password" name="password" required><br><br>
+              <h1 class="h4 text-center mb-4"><%= title %></h1>
 
-      <button type="submit">Login</button>
-    </form>
+              <% if (typeof error !== "undefined") { %>
+                <div class="alert alert-danger text-center"><%= error %></div>
+              <% } %>
 
-    <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+              <form action="/login" method="POST">
+
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input type="text" name="username" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+              </form>
+
+              <p class="text-center mt-3">
+                Don't have an account?
+                <a href="/signup">Sign up here</a>
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <%- include('partials/footer') %>
   </body>
 </html>
