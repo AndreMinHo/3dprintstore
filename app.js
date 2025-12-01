@@ -1,3 +1,5 @@
+// Some sections of this script were generate by AI tools
+
 const express = require("express");
 const app = express();
 

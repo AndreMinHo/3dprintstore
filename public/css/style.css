@@ -2,6 +2,11 @@ body {
     background-color: #D3D3D3;
 }
 
+.footer-space {
+  padding-bottom: 50px;
+}
+
+
 #homeCarousel .carousel-item img {
   max-height: 350px;
   width: auto;
