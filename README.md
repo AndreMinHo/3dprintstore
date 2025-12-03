@@ -1,6 +1,8 @@
 # 3D Print Storefront
 Express.js/SQLite/bootstrap project for the HarvardX CS50's Introduction to Computer Science final project.
 
+#### Video Demo: https://www.youtube.com/watch?v=4WfvXi5R3lM
+
 ## Description: 
 
 The first thing you must do when 3D printing something is to choose the appropriate filament. These come in different colors and have different properties: brittle, heat resistant, soft, hard. Wouldn’t it be cool for your customers to choose the filament they want and then have a preview of how it looks like before they order a custom 3D print? That’s what this website is all about.
